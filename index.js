@@ -20,7 +20,7 @@ app.use(cors());
 //ROUTING for API
 async function main(){
     // let db = await connect();
-    await MongoUtil.connect(MONGO_URI, "fake_recipe"); //switch to fake_recipes db
+    await MongoUtil.connect(MONGO_URI, "fake_recipes"); //switch to fake_recipes db
     
     const db = MongoUtil.getDB();
 

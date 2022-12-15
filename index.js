@@ -20,13 +20,13 @@ app.use(cors());
 //ROUTING for API
 async function main(){
     // let db = await connect();
-    await MongoUtil.connect(MONGO_URI, "Recipe"); //switch to fake_recipes db
+    await MongoUtil.connect(MONGO_URI, "fake_recipe"); //switch to fake_recipes db
     
     const db = MongoUtil.getDB();
 
     //localhost:8888/recipes
     app.get('/recipes', async(req, res)=>{
-        let recipes = await db.collection('recipe').find().toArray();
+        let recipes = await db.collection('recipes').find().toArray();
         res.status(200);
         res.send(recipes);
     })
@@ -36,7 +36,7 @@ async function main(){
     app.post('/recipes', async(req,res)=>{
         //@TODO by right deal with some error handling 
 
-        const results = await db.collection('recipe').insertOne({
+        const results = await db.collection('recipes').insertOne({
             title: req.body.title,
             ingredients: req.body.ingredients
         });
